@@ -1,11 +1,39 @@
 package org.campus02.oop;
 
+import java.util.ArrayList;
+
 public class DemoApp {
 
 	public static void main(String[] args) {
-		
+		PersonManager personManager = new PersonManager();
+		for(int i = 0; i < 100; i++){
+			personManager.add(createTestPerson());
+		}
 
+		GenderAnalyzer genderAnalyzer = new GenderAnalyzer();
+		genderAnalyzer.setPersons(personManager.getPersons());
+		genderAnalyzer.analyze();
+		System.out.println("");
 
+		CountryAnalyzer countryAnalyzer = new CountryAnalyzer();
+		countryAnalyzer.setPersons(personManager.getPersons());
+		countryAnalyzer.analyze();
+		System.out.println("");
+
+		MaxSalaryAnalyzer maxSalaryAnalyzer = new MaxSalaryAnalyzer();
+		maxSalaryAnalyzer.setPersons(personManager.getPersons());
+		maxSalaryAnalyzer.analyze();
+		System.out.println("");
+
+		BMIAnalyzer bmiAnalyzer = new BMIAnalyzer();
+		bmiAnalyzer.setPersons(personManager.getPersons());
+		bmiAnalyzer.analyze();
+		System.out.println("");
+
+		ArrayList<Pair<Person, Double>> result = bmiAnalyzer.getResult();
+		for (Pair<Person, Double> personDoublePair : result) {
+			System.out.println("Person: " + personDoublePair.getKey() + ", BMI: " + personDoublePair.getValue());
+		}
 	}
 	
 	
